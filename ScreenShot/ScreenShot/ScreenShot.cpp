@@ -50,7 +50,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 }
 
 
-#pragma region WndProc
 
 LRESULT CALLBACK BackWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -395,7 +394,7 @@ LRESULT CALLBACK ToolWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
                     _tcscpy_s(path, ofn.lpstrFile);
 
                     RECT clientRect;
-                    GetClientRect(hCapWnd, &clientRect);
+                    GetClientRect(hWnd, &clientRect);
 
                     int height = clientRect.bottom, width = clientRect.right;
 
@@ -453,7 +452,7 @@ LRESULT CALLBACK ToolWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
     
 }
 
-#pragma endregion
+ 
 
 
 VOID CALLBACK TimerProc(HWND hWnd, UINT message, UINT idTimer, DWORD dwTime)
