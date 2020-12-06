@@ -28,8 +28,6 @@ BOOL        isDrawing = false;
 // coords of capture window and its max size
 INT         xLeftPos;
 INT         yTopPos;
-INT         xRightPos;
-INT         yBottomPos;
 POINT       maxFrameSize;
 
 // coords for drawing on capture window

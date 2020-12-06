@@ -6,13 +6,13 @@ BOOL CreateBackgroundWindow(HWND* hBackWnd, HINSTANCE hInst)
 {
     int initX = 0;
     int initY = 0;
-    int initWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);;
+    int initWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
     int initHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 
     *hBackWnd = CreateWindowEx(
-        WS_EX_LAYERED,
+        WS_EX_LAYERED | WS_EX_TOPMOST,
         TEXT("BackgroundWnd"),
-        NULL,
+        TEXT("ScreenShot"),
         WS_POPUP,
         initX, initY, initWidth, initHeight,
         NULL,
@@ -39,7 +39,8 @@ BOOL CreateToolWindow(HWND* hToolWnd, HINSTANCE hInst, HWND hParent)
     int initHeight = 100;
     int initWidth = 390;
 
-    *hToolWnd = CreateWindow(
+    *hToolWnd = CreateWindowEx(
+        WS_EX_TOPMOST,
         TEXT("ToolWnd"),
         NULL,
         WS_POPUPWINDOW | WS_CAPTION,
@@ -65,7 +66,7 @@ BOOL CreateToolWindow(HWND* hToolWnd, HINSTANCE hInst, HWND hParent)
 BOOL CreateCaptureWindow(HWND* hCapWnd, HINSTANCE hInst, HWND hParent)
 {
     *hCapWnd = CreateWindowEx(
-        WS_EX_LAYERED,
+        WS_EX_LAYERED | WS_EX_TOPMOST,
         TEXT("CaptureWnd"),
         NULL,
         WS_POPUP | WS_THICKFRAME,

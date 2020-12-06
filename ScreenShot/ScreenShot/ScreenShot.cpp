@@ -9,7 +9,7 @@
 
 
 //Pen
-HPEN        hPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+HPEN        hPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
 HBRUSH      hBrush = (HBRUSH)(GetStockObject(NULL_BRUSH));
 
 
@@ -179,8 +179,8 @@ LRESULT CALLBACK BackWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         if (isDrawingCapWnd)
         {
             // resizing capture window
-            xRightPos = GET_X_LPARAM(lParam);
-            yBottomPos = GET_Y_LPARAM(lParam);
+            int xRightPos = GET_X_LPARAM(lParam);
+            int yBottomPos = GET_Y_LPARAM(lParam);
             if (yTopPos == yBottomPos && xLeftPos == xRightPos) return 0;
             int frameWidth = abs(xRightPos - xLeftPos);
             int frameHeight = abs(yBottomPos - yTopPos);
@@ -300,7 +300,7 @@ LRESULT CALLBACK CaptureWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
     break;
     case WM_NCHITTEST:
     {
-        // drag-n-drop
+        // dragging
         LRESULT hit = DefWindowProc(hWnd, message, wParam, lParam);
         if (hit == HTCLIENT && !(toolId != ID_HAND)) hit = HTCAPTION;
         return hit;
@@ -395,7 +395,7 @@ LRESULT CALLBACK ToolWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
                     _tcscpy_s(path, ofn.lpstrFile);
 
                     RECT clientRect;
-                    GetClientRect(hWnd, &clientRect);
+                    GetClientRect(hCapWnd, &clientRect);
 
                     int height = clientRect.bottom, width = clientRect.right;
 
@@ -425,7 +425,7 @@ LRESULT CALLBACK ToolWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
                 if (ChooseColor(&cc))
                 {
                     DeleteObject(hPen);
-                    hPen = CreatePen(PS_SOLID, 2, cc.rgbResult);
+                    hPen = CreatePen(PS_SOLID, 3, cc.rgbResult);
                 }
             }
             break;

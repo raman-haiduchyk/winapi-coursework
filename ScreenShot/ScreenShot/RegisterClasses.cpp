@@ -30,7 +30,7 @@ ATOM BackgroundClass(HINSTANCE hInst, WNDPROC BackWndProc)
     wcex.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
     wcex.hCursor = LoadCursor(NULL, IDC_CROSS);
     wcex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    wcex.hIconSm = NULL;
+    wcex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
     wcex.hInstance = hInst;
     wcex.style = CS_VREDRAW | CS_HREDRAW;
     wcex.lpszClassName = TEXT("BackgroundWnd");
