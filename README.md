@@ -1,2 +1,1 @@
-# winapi-coursework
- 
+Simple WinAPI screenshot app.
