@@ -393,29 +393,7 @@ LRESULT CALLBACK ToolWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
                     TCHAR path[MAX_PATH];
                     _tcscpy_s(path, ofn.lpstrFile);
 
-                    RECT clientRect;
-                    GetClientRect(hWnd, &clientRect);
-
-                    int height = clientRect.bottom, width = clientRect.right;
-
-                    HBITMAP hBmpCopy = CreateBitmap(width, height, 1, 32, NULL);
-
-                    HDC srcDC = CreateCompatibleDC(GetDC(NULL));
-                    HDC newDC = CreateCompatibleDC(GetDC(NULL));
-
-                    HBITMAP srcBitmap = (HBITMAP)SelectObject(srcDC, hBmp);
-                    HBITMAP newBitmap = (HBITMAP)SelectObject(newDC, hBmpCopy);
-
-                    BitBlt(newDC, 0, 0, width, height, srcDC, 0, 0, SRCCOPY);
-
-                    SelectObject(srcDC, srcBitmap);
-                    SelectObject(newDC, newBitmap);
-
-                    DeleteDC(srcDC);
-                    DeleteDC(newDC);
-
-                    SaveBmpAs(hBmpCopy, path);
-                    DeleteObject(hBmpCopy);
+                    SaveBmpAs(hBmp, path);
                 }
             }
             break;
